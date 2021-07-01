@@ -2,15 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 const WorkoutCreate = (props) => {
-    const [description, setDescription] = useState('');
-    const [definition, setDefinition] = useState('');
-    const [result, setResult] = useState('');
+    const [type, setType] = useState('');
+    const [weight, setWeight] = useState('');
+    const [reps, setReps] = useState('');
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
         fetch('http://localhost:3000/log/', {
             method: 'POST',
-            body: JSON.stringify({ log: { description: description, definition: definition, result: result } }),
+            body: JSON.stringify({ log: { type: type, weight: weight, reps: reps}}),
             headers: new Headers({
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${props.token}`
@@ -18,9 +19,9 @@ const WorkoutCreate = (props) => {
         }).then((res) => res.json())
             .then((logData) => {
                 console.log(logData);
-                setDescription('');
-                setDefinition('');
-                setResult('');
+                setType('');
+                setWeight('');
+                setReps('');
                 props.fetchWorkouts();
             })
     };
@@ -29,20 +30,16 @@ const WorkoutCreate = (props) => {
             <h3>Log a Workout</h3>
             <Form>
                 <FormGroup>
-                    <Label htmlFor='description'/>
-                    <Input name='description' value={description} onChange={(e) => setDescription(e.target.value)} />
+                    <Label htmlFor='type'/>
+                    <Input name='type' value={type} onChange={(e) => setType(e.target.value)} />
                 </FormGroup>
                 <FormGroup>
-                    <Label htmlFor='definition' />
-                    <Input type='select' name='definition' value={definition} onChange={(e) => setDefinition(e.target.value)}>
-                        <option value='Time'>Time</option>
-                        <option value='Weight'>Weight</option>
-                        <option value='Distance'>Distance</option>
-                    </Input>
+                    <Label htmlFor='weight' />
+                    <Input type='type' name='weight' value={weight} onChange={(e) => setReps(e.target.value)}/>
                 </FormGroup>
                 <FormGroup>
-                    <Label htmlFor='result' />
-                    <Input name='results' value={result} onChange={(e) => setResult(e.target.value)}/>
+                    <Label htmlFor='reps' />
+                    <Input name='reps' value={reps} onChange={(e) => setResult(e.target.value)}/>
                 </FormGroup>
                 <Button type ='submut'>Click to Submit</Button>
             </Form>
