@@ -18,9 +18,9 @@ const WorkoutTable = (props) => {
             return(
                 <tr key={index}>
                     <th scope="row">{workout.id}</th>
-                    <td>{workout.result}</td>
-                    <td>{workout.description}</td>
-                    <td>{workout.definition}</td>
+                    <td>{workout.reps}</td>
+                    <td>{workout.type}</td>
+                    <td>{workout.weight}</td>
                     <td>
                         <Button color="warning">Update</Button>
                         <Button color="danger" onClick={() => {deleteWorkout(workout)}}>Delete</Button>
@@ -37,9 +37,9 @@ const WorkoutTable = (props) => {
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Result</th>
-                    <th>Description</th>
-                    <th>Definition</th>
+                    <th>Reps</th>
+                    <th>Type</th>
+                    <th>Weight</th>
                 </tr>
             </thead>
             <tbody>

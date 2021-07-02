@@ -41,7 +41,7 @@ const WorkoutCreate = (props) => {
                     <Label htmlFor='reps' />
                     <Input name='reps' value={reps} onChange={(e) => setResult(e.target.value)}/>
                 </FormGroup>
-                <Button type ='submut'>Click to Submit</Button>
+                <Button type ='submit'>Click to Submit</Button>
             </Form>
         </>
     );

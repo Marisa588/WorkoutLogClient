@@ -2,14 +2,14 @@ import React, {useState} from 'react';
 import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody} from 'reactstrap';
 
 const WorkoutEdit = (props) => {
-    const [editDesc, setEditDesc] = useState(props.workoutToUpdate.description);
-    const [editDef, setEditDef] = useState(props.workoutToUpdate.definition);
-    const [editRes, setEditRes] = useState(props.workout.ToUpdate.result);
+    const [type, setType] = useState(props.workoutToUpdate.type);
+    const [weight, setWeight] = useState(props.workoutToUpdate.weight);
+    const [reps, setReps] = useState(props.workout.ToUpdate.reps);
     const workoutUpdate = (event, workout) => {
         event.preventDefault();
         fetch(`http://localhost:3000/log/${props.workoutToUpdate.id}`, {
             method: 'PUT',
-            body: JSON.stringify({log: {description: editDesc, definition: editDef, result: editRes}}),
+            body: JSON.stringify({log: {type: editType, weight: editWeight, reps: editReps}}),
             headers: new Headers({
                 'Content-Type': 'application/json',
                 'Authorization': props.token
@@ -27,8 +27,8 @@ const WorkoutEdit = (props) => {
             <ModalBody>
                 <Form onSubmit={workoutUpdate}>
                     <FormGroup>
-                        <Label htmlFor="result">Edit Result:</Label>
-                        <Input name="result" value={editRes} onChange={(e) => setEditRes(e.target.value)}/>
+                        <Label htmlFor="reps">Edit Result:</Label>
+                        <Input name="reps" value={editRep} onChange={(e) => setEditRes(e.target.value)}/>
                     </FormGroup>
                     <FormGroup>
                         <Label htmlFor="description">Edit Description:</Label>
